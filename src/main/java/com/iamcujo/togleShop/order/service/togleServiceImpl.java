@@ -1,7 +1,5 @@
 package com.iamcujo.togleShop.order.service;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +33,12 @@ public class togleServiceImpl extends CommonComponent implements togleService {
 	public void deleteOrder(ArrayList<Map<String,Object>> list) throws Exception,SQLException {
 		try {
 			SqlMap.startTransaction();
-			togleDAO.deleteOrder(list);
+			togledao.deleteOrder(list);
 			SqlMap.commitTransaction();
 		} catch (SQLException se) {
-			log.write(se.toString());
-			throw new WebAppException();
+
 		} catch (Exception e) {
-			log.write(e.toString());
-			throw new WebAppException();
+
 		} finally {
 			SqlMap.endTransaction();
 		}
@@ -53,14 +49,12 @@ public class togleServiceImpl extends CommonComponent implements togleService {
 	public void updateOrderConfirm(ArrayList<Map<String,Object>> list) throws Exception,SQLException {
 		try {
 			SqlMap.startTransaction();
-			togleDAO.updateOrderConfirm(list);
+			togledao.updateOrderConfirm(list);
 			SqlMap.commitTransaction();
 		} catch (SQLException se) {
-			log.write(se.toString());
-			throw new WebAppException();
+
 		} catch (Exception e) {
-			log.write(e.toString());
-			throw new WebAppException();
+
 		} finally {
 			SqlMap.endTransaction();
 		}

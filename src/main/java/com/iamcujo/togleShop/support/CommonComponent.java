@@ -2,13 +2,31 @@ package com.iamcujo.togleShop.support;
 
 import org.springframework.stereotype.Component;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+
 @Component
 public class CommonComponent {
 	protected static String sClassName;
 	protected static String sMethodName;
 	protected static String sLogPosition;
 	
+	public static SqlMapClient SqlMap;
+	
 	public CommonComponent() throws Exception {
+		iBatisInit();
+	}
+
+	/**
+	 * @author iamcujo
+	 * @desc   iBatis 인스턴스 초기화
+	 */
+	public static void iBatisInit() throws Exception {
+		try {
+			SqlMap = iBatisInstanceManager.getInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Failed to CommonExtendBeans initialize. Cause by : " + e);
+		}
 	}
 	
 	/**
