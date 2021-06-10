@@ -1,6 +1,6 @@
 ## code togleShop test
 
-|기술 요건|
+|skill|
 |----------------|
 |Java 8|
 |jdbc driver|
