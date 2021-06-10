@@ -28,6 +28,12 @@ public class togleServiceImpl extends CommonComponent implements togleService {
 		return togledao.selectOrderList(map); 
 	}
 	
+	//결제하는 상품의 상품코드 조회
+	@Override
+	public int selectGoodsInfo(Object object) throws Exception {
+		return togledao.selectGoodsInfo(object);
+	}
+	
 	//결제번호로 계산된 결제 내역을 삭제
 	@Override
 	public void deleteOrder(ArrayList<Map<String,Object>> list) throws Exception,SQLException {

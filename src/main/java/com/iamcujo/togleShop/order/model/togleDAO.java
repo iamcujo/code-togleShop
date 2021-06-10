@@ -16,17 +16,22 @@ public class togleDAO extends CommonComponent {
 	
 	//결제번호로 계산된 결제 내역을 조회
 	@SuppressWarnings("unchecked") 
-	public List<Map<String, Object>> selectOrderList(Map<String, Object> map) throws Exception{
+	public List<Map<String, Object>> selectOrderList(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>)SqlMap.queryForList("com.iamcujo.togleShop.order.sql.togleSqlMap.selectOrderList", map);
 	}
 	
+	//결제하는 상품의 상품코드 조회
+	public int selectGoodsInfo(Object integer) throws Exception {
+		return (int) SqlMap.queryForObject("com.iamcujo.togleShop.order.sql.togleSqlMap.selectGoodsInfo", integer);
+	}
+	
 	//결제번호로 계산된 결제 내역을 삭제
-	public void deleteOrder(List<Map<String,Object>> list) throws Exception{
+	public void deleteOrder(List<Map<String,Object>> list) throws Exception {
 		SqlMap.delete("com.iamcujo.togleShop.order.sql.togleSqlMap.deleteOrder", list);
 	}
 	
 	//결제번호로 결제 완료 처리
-	public void updateOrderConfirm(List<Map<String,Object>> list) throws Exception{
+	public void updateOrderConfirm(List<Map<String,Object>> list) throws Exception {
 		SqlMap.update("com.iamcujo.togleShop.order.sql.togleSqlMap.updateOrderConfirm", list);
 	}
 

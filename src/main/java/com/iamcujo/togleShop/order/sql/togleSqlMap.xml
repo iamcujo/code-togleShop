@@ -12,6 +12,7 @@
              , ORDER_TEL
              , ORDER_ID
              , ORDER_GOODS
+             , GOODS_CD
              , ORDER_QTY
              , RECV_NM
              , RECV_TEL1
@@ -20,21 +21,33 @@
              , RECV_ADDRESS1
              , RECV_ADDRESS2Z
              , DEVERY_REMARK
-          FROM TOGLEORDER
+          FROM TOGLE_ORDER
          WHERE 1=1
            AND FLAG IN ('Y', 'N') -- 결제완료 FLAG (Y:결제완료, N:결제미완료)
            AND PAY_NO = #payNo#
     </select>
     
+    <select id="selectGoodsInfo" resultClass="java.lang.Integer">
+        SELECT 
+              -- GOODS_CD
+             --, GOODS_NM
+             --, GOODS_OPT
+               PRICE
+             --, DELIVERY_FEE
+          FROM TOGLE_GOODS
+         WHERE 1=1
+           AND GOODS_NM = #goods_cd#
+    </select>
+    
     <delete id="deleteOrder" parameterClass="java.util.List">
-        DELETE FROM TOGLEORDER
+        DELETE FROM TOGLE_ORDER
          WHERE 1=1
            AND FLAG = 'N' --결제완료 FLAG (Y:결제완료, N:결제미완료)
            AND PAY_NO = #payno#
     </delete>
     
     <update id="updateOrderConfirm" parameterClass="java.util.List">
-    	UPDATE TOGLEORDER
+    	UPDATE TOGLE_ORDER
     	   SET FLAG = 'Y' --결제완료 FLAG (Y:결제완료, N:결제미완료)
     	 WHERE 1=1
     	   AND PAY_NO = #payno#
